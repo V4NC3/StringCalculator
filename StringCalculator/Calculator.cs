@@ -4,7 +4,7 @@
     {
         public static int Add(string number)
         {
-            return 0;
+            return string.IsNullOrEmpty(number) ? 0 : int.Parse(number);
         }
     }
 }
