@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace StringCalculator
 {
@@ -26,6 +27,14 @@ namespace StringCalculator
         public void Add_Number_ReturnSum(int expected, string number)
         {
             Assert.AreEqual(expected, Calculator.Add(number));
+        }
+        
+        [Test]
+        public void Add_NegativeNumber_ThrowException()
+        {
+            const string number = "1\n-2,-3";
+            var exception = Assert.Throws<Exception>(() => Calculator.Add(number));
+            Assert.AreEqual("negatives not allowed -2 -3", exception.Message);
         }
     }
 }

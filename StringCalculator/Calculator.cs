@@ -14,13 +14,21 @@ namespace StringCalculator
                                     .Split(',');
 
             // Delimiter condition check
-            if (numberArray[0].StartsWith("//"))
-            {
-                var delimiter = Convert.ToChar(numberArray[0].Remove(0, 2));
-                numberArray = numberArray[1].Split(delimiter);
-            }
+            GetNumberArrayDefaultDelimiter(ref numberArray);
+
+            if(numberArray.Any(x => int.Parse(x) < 0))
+                throw new Exception($"negatives not allowed {string.Join(" ", numberArray.Where(x => int.Parse(x) < 0))}");
 
             return numberArray.Sum(x => int.Parse(x));
+        }
+
+        private static void GetNumberArrayDefaultDelimiter(ref string[] numberArray)
+        {
+            if (!numberArray[0].StartsWith("//"))
+                return;
+            
+            var delimiter = Convert.ToChar(numberArray[0].Remove(0, 2));
+            numberArray = numberArray[1].Split(delimiter);
         }
     }
 }
