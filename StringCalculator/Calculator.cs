@@ -17,10 +17,15 @@ namespace StringCalculator
             GetNumberArrayDefaultDelimiter(ref numberStringArray);
             var numberArray = numberStringArray.Select(int.Parse).ToArray();
 
-            if(numberArray.Any(x => x < 0))
-                throw new Exception($"negatives not allowed {string.Join(" ", numberArray.Where(x => x < 0))}");
+            ValidateNonNegative(numberArray);
 
             return numberArray.Sum(x => x);
+        }
+
+        private static void ValidateNonNegative(int[] numberArray)
+        {
+            if (numberArray.Any(x => x < 0))
+                throw new Exception($"negatives not allowed {string.Join(" ", numberArray.Where(x => x < 0))}");
         }
 
         private static void GetNumberArrayDefaultDelimiter(ref string[] numberArray)
