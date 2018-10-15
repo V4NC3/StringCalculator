@@ -24,6 +24,9 @@ namespace StringCalculator
         // Created test to check for Delimiter ";".
         [TestCase(3, "//;\n1;2")]
 
+        // Created test to set overflow at 1000 ";".
+        [TestCase(2, "//;\n2;1001")]
+
         public void Add_Number_ReturnSum(int expected, string number)
         {
             Assert.AreEqual(expected, Calculator.Add(number));
