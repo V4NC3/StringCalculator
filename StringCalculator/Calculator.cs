@@ -10,16 +10,17 @@ namespace StringCalculator
             if (string.IsNullOrEmpty(number))
             return 0;
 
-            var numberArray = number.Replace("\n",",")
+            var numberStringArray = number.Replace("\n",",")
                                     .Split(',');
 
             // Delimiter condition check
-            GetNumberArrayDefaultDelimiter(ref numberArray);
+            GetNumberArrayDefaultDelimiter(ref numberStringArray);
+            var numberArray = numberStringArray.Select(int.Parse).ToArray();
 
-            if(numberArray.Any(x => int.Parse(x) < 0))
-                throw new Exception($"negatives not allowed {string.Join(" ", numberArray.Where(x => int.Parse(x) < 0))}");
+            if(numberArray.Any(x => x < 0))
+                throw new Exception($"negatives not allowed {string.Join(" ", numberArray.Where(x => x < 0))}");
 
-            return numberArray.Sum(x => int.Parse(x));
+            return numberArray.Sum(x => x);
         }
 
         private static void GetNumberArrayDefaultDelimiter(ref string[] numberArray)
