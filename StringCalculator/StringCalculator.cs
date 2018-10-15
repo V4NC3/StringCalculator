@@ -16,6 +16,9 @@ namespace StringCalculator
 
         // Created test to return 6 when string is 3 numbers.
         [TestCase(6, "1,2,3")]
+        
+        // Created test to check for new line with string is 3 numbers.
+        [TestCase(6, "1\n2,3")]
 
         public void Add_Number_ReturnSum(int expected, string number)
         {
