@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace StringCalculator
 {
@@ -11,6 +12,13 @@ namespace StringCalculator
 
             var numberArray = number.Replace("\n",",")
                                     .Split(',');
+
+            // Delimiter condition check
+            if (numberArray[0].StartsWith("//"))
+            {
+                var delimiter = Convert.ToChar(numberArray[0].Remove(0, 2));
+                numberArray = numberArray[1].Split(delimiter);
+            }
 
             return numberArray.Sum(x => int.Parse(x));
         }

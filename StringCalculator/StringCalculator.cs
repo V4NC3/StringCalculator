@@ -20,6 +20,9 @@ namespace StringCalculator
         // Created test to check for new line with string is 3 numbers.
         [TestCase(6, "1\n2,3")]
 
+        // Created test to check for Delimiter ";".
+        [TestCase(3, "//;\n1;2")]
+
         public void Add_Number_ReturnSum(int expected, string number)
         {
             Assert.AreEqual(expected, Calculator.Add(number));
