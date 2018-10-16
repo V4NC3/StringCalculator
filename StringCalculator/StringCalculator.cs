@@ -27,7 +27,7 @@ namespace StringCalculator
         // Created test to set overflow at 1000 ";".
         [TestCase(2, "//;\n2;1001")]
 
-        // Created test to set overflow at 1000 ";".
+        // Created test to check for *** .
         [TestCase(6, "//***\n1***2***3")]
 
         public void Add_Number_ReturnSum(int expected, string number)
