@@ -19,7 +19,7 @@ namespace StringCalculator
 
             ValidateNonNegative(numberArray);
 
-            return numberArray.Sum(x => x);
+            return numberArray.Where(x => x <= 1000).Sum(x => x);
         }
 
         private static void ValidateNonNegative(int[] numberArray)
@@ -33,8 +33,9 @@ namespace StringCalculator
             if (!numberArray[0].StartsWith("//"))
                 return;
             
-            var delimiter = Convert.ToChar(numberArray[0].Remove(0, 2));
-            numberArray = numberArray[1].Split(delimiter);
+            var delimiter = numberArray[0].Remove(0, 2);
+            numberArray[1] = numberArray[1].Replace(delimiter, ",");
+            numberArray = numberArray[1].Split(',');
         }
     }
 }
