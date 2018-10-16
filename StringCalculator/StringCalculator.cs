@@ -30,6 +30,9 @@ namespace StringCalculator
         // Created test to check for *** .
         [TestCase(6, "//***\n1***2***3")]
 
+        // Created test to allow multiple delimiters 
+        [TestCase(6, "//*%\n1*2%3")]
+
         public void Add_Number_ReturnSum(int expected, string number)
         {
             Assert.AreEqual(expected, Calculator.Add(number));

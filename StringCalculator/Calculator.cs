@@ -16,7 +16,7 @@ namespace StringCalculator
 
             // Delimiter condition check
             GetNumberArrayDefaultDelimiter(ref numberStringArray, delimiter);
-            var numberArray = numberStringArray.Select(int.Parse).ToArray();
+            var numberArray = numberStringArray.Where(x => !string.IsNullOrEmpty(x)).Select(int.Parse).ToArray();
 
             ValidateNonNegative(numberArray);
 
@@ -34,8 +34,11 @@ namespace StringCalculator
             if (!numberArray[0].StartsWith("//"))
                 return;
             
-            var customDelimiter = numberArray[0].Remove(0, 2);
-            numberArray[1] = numberArray[1].Replace(customDelimiter, delimiter.ToString());
+            var customDelimiters = numberArray[0].Remove(0, 2).Distinct();
+            foreach (var customDelimiter in customDelimiters)
+            {
+            numberArray[1] = numberArray[1].Replace(customDelimiter, delimiter);
+            }
             numberArray = numberArray[1].Split(delimiter);
         }
     }
